@@ -1,3 +1,14 @@
+/*---------------------------------------------
+ * Autor: Jonathan Moura
+ * Data:29/04/2018
+ *---------------------------------------------
+ * Descrição: Classe de vendas
+ * 
+ *---------------------------------------------
+ * Histórico de modificação
+ * Data    Autor    Descrição
+ *       |        |
+ *-------------------------------------------*/
 package negocio;
 import java.util.Date;
 public class Vendas extends Produto{

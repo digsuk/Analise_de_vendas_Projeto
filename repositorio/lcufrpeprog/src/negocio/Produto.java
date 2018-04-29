@@ -1,3 +1,14 @@
+/*---------------------------------------------
+ * Autor: Jonathan Moura
+ * Data:29/04/2018
+ *---------------------------------------------
+ * Descrição: Classe do produto
+ * 
+ *---------------------------------------------
+ * Histórico de modificação
+ * Data    Autor    Descrição
+ *       |        |
+ *-------------------------------------------*/
 package negocio;
 
 public class Produto {
