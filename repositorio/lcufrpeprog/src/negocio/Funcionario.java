@@ -11,18 +11,17 @@
  *-------------------------------------------*/
 package negocio;
 
-public class Funcionario {
-	private String nome, cpf, email, senha, funcao, chave;
+public class Funcionario extends Objetos{
+	private String cpf, email, senha, funcao, chave;
 
 	public Funcionario(String nome, String cpf, String email, String senha, String funcao, String chave) {
-		this.nome = nome;
+		setNome(nome);
 		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
 		this.funcao = funcao;
 		this.chave = chave;
 	}
-
 	
 	public String getChave() {
 		return chave;
@@ -30,14 +29,6 @@ public class Funcionario {
 
 	public void setChave(String chave) {
 		this.chave = chave;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getCpf() {

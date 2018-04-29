@@ -2,7 +2,7 @@
  * Autor: Jonathan Moura
  * Data:29/04/2018
  *---------------------------------------------
- * Descrição: Repositorio array para produtos
+ * Descrição: Repositorio array para vendas
  * 
  *---------------------------------------------
  * Histórico de modificação
@@ -10,12 +10,12 @@
  *       |        |
  *-------------------------------------------*/
 package dados;
-import negocio.Produto;
-public class RepProdArray extends RepositorioArray {
-	private Produto[] repositorio;
+import negocio.Vendas;
+public class RepVendasArray extends RepositorioArray{
+	private Vendas[] repositorio;
 	
-	public RepProdArray() {
+	public RepVendasArray() {
 		super();
-		this.repositorio = new Produto[TAMANHO];
+		this.repositorio = new Vendas[TAMANHO];
 	}
 }
