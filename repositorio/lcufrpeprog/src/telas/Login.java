@@ -17,6 +17,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import negocio.ValidarCampos;
+
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
@@ -63,6 +66,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setTitle("An\u00E1lise de Vendas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
@@ -107,11 +111,11 @@ public class Login extends JFrame {
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				textFieldCPF.getText();
-				//TODO Validar dados de entrada: Criar método que recebe CPF e senha para validar no repositorio.
-				//TODO Verificar perfil: Criar método para identificar o perfil do usuário.
-				//TODO Chamar tela principal para usuário específico.
-				
+				if(ValidarCampos.validarCampoVazio(textFieldCPF.getText(), passwordField.getText())){
+					//TODO Validar dados de entrada: Criar método que recebe CPF e senha para validar no repositorio.
+					//TODO Verificar perfil: Criar método para identificar o perfil do usuário.
+					//TODO Chamar tela principal para usuário específico.
+				}				
 			}
 		});
 		btnOk.setBounds(206, 172, 89, 23);
