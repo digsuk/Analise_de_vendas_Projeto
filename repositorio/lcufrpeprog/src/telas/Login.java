@@ -64,7 +64,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 568, 498);
+		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,23 +72,23 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(106, 110, 334, 242);
+		panel.setBounds(127, 173, 334, 242);
 		panel.setLayout(null);
 		panel.setBorder(null);
 		panel.setBackground(new Color(255, 255, 255));
 		contentPane.add(panel);
 
-		JLabel label = new JLabel("");
-		label.setForeground(Color.RED);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		label.setBounds(78, 72, 170, 14);
-		panel.add(label);
+		JLabel lblCPFVazio = new JLabel("");
+		lblCPFVazio.setForeground(Color.RED);
+		lblCPFVazio.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCPFVazio.setBounds(78, 72, 170, 14);
+		panel.add(lblCPFVazio);
 
-		JLabel label_1 = new JLabel("");
-		label_1.setForeground(Color.RED);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		label_1.setBounds(77, 132, 170, 14);
-		panel.add(label_1);
+		JLabel lblSenhaVazia = new JLabel("");
+		lblSenhaVazia.setForeground(Color.RED);
+		lblSenhaVazia.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblSenhaVazia.setBounds(77, 132, 170, 14);
+		panel.add(lblSenhaVazia);
 
 		JButton btnEsqueceuASenha = new JButton("Esqueceu a senha?");
 		btnEsqueceuASenha.addActionListener(new ActionListener() {

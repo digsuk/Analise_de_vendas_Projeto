@@ -37,10 +37,10 @@ public class RepositorioBD implements IRepositorio {
 		}
 	}
 
-	public void inserir(Objetos objeto, String sql) {
+	public void inserir(Objetos objeto, String comando) {
 		try {
 			Statement stm = con.createStatement();
-			int res = stm.executeUpdate(sql);
+			int res = stm.executeUpdate(comando);
 			if (res > 0) {
 				System.out.println("Sucesso!");
 			} else {
@@ -51,10 +51,10 @@ public class RepositorioBD implements IRepositorio {
 		}
 	}
 
-	public ResultSet procurar(String sql) {
+	public ResultSet procurar(String comando, String identificador) {
 		try {
 			Statement stm = con.createStatement(1, 0);
-			ResultSet rs = stm.executeQuery(sql);
+			ResultSet rs = stm.executeQuery(comando);
 			if (rs != null) {
 				System.out.println("Sucesso!");
 			} else {
@@ -67,10 +67,10 @@ public class RepositorioBD implements IRepositorio {
 		}
 	}
 
-	public void remover(String sql) {
+	public void remover(String comando, String identificador) {
 		try {
 			Statement stm = con.createStatement();
-			int res = stm.executeUpdate(sql);
+			int res = stm.executeUpdate(comando);
 			if (res > 0) {
 				System.out.println("Sucesso!");
 			} else {
@@ -81,10 +81,10 @@ public class RepositorioBD implements IRepositorio {
 		}
 	}
 	
-	public void atualizar(Objetos objeto, String sql) {
+	public void atualizar(Objetos objeto, String comando) {
 		try {
 			Statement stm = con.createStatement();
-			int res = stm.executeUpdate(sql);
+			int res = stm.executeUpdate(comando);
 			if (res > 0) {
 				System.out.println("Sucesso!");
 			} else {

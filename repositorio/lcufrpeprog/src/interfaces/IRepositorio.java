@@ -12,9 +12,9 @@
 package interfaces;
 import negocio.Objetos;
 public interface IRepositorio {
-	public void inserir(Objetos objeto,String identificador);
+	public void inserir(Objetos objeto,String comando);
 //	public boolean existe(String identificador);
-	public Object procurar(String identificador);
-	public void remover(String identificador);
-	public void atualizar(Objetos objeto,String identificador);
+	public Object procurar(String comando, String identificador);
+	public void remover(String comando, String identificador);
+	public void atualizar(Objetos objeto,String comando);
 }
