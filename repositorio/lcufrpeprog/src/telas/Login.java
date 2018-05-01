@@ -1,0 +1,140 @@
+/*------------------------------------------------
+ * Autor: Jonathan Moura
+ * Data:01/05/2018
+ *------------------------------------------------
+ * Descrição: Tela de login do usuário
+ * 
+ *------------------------------------------------
+ * Histórico de modificação
+ * Data    Autor    Descrição
+ *       |        |
+ *----------------------------------------------*/
+package telas;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.SystemColor;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Login extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textFieldCPF;
+	private JPasswordField passwordField;
+	public static Login instance;
+
+	public static Login getInstance() {
+		if (instance == null) {
+			instance = new Login();
+		}
+		return instance;
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login frame = new Login();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Login() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 568, 498);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(135, 206, 235));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(106, 110, 334, 242);
+		panel.setLayout(null);
+		panel.setBorder(null);
+		panel.setBackground(new Color(255, 255, 255));
+		contentPane.add(panel);
+
+		JLabel label = new JLabel("");
+		label.setForeground(Color.RED);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		label.setBounds(78, 72, 170, 14);
+		panel.add(label);
+
+		JLabel label_1 = new JLabel("");
+		label_1.setForeground(Color.RED);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		label_1.setBounds(77, 132, 170, 14);
+		panel.add(label_1);
+
+		JButton btnEsqueceuASenha = new JButton("Esqueceu a senha?");
+		btnEsqueceuASenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO Chamar popup para informar o email.
+			}
+		});
+		btnEsqueceuASenha.setBorderPainted(false);
+		btnEsqueceuASenha.setForeground(SystemColor.textHighlight);
+		btnEsqueceuASenha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnEsqueceuASenha.setBorder(null);
+		btnEsqueceuASenha.setBackground(new Color(255, 255, 255));
+		btnEsqueceuASenha.setBounds(22, 172, 128, 23);
+		panel.add(btnEsqueceuASenha);
+
+		JButton btnOk = new JButton("Ok");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textFieldCPF.getText();
+				//TODO Validar dados de entrada: Criar método que recebe CPF e senha para validar no repositorio.
+				//TODO Verificar perfil: Criar método para identificar o perfil do usuário.
+				//TODO Chamar tela principal para usuário específico.
+				
+			}
+		});
+		btnOk.setBounds(206, 172, 89, 23);
+		panel.add(btnOk);
+
+		textFieldCPF = new JTextField();
+		textFieldCPF.setColumns(10);
+		textFieldCPF.setBounds(78, 50, 217, 20);
+		panel.add(textFieldCPF);
+
+		JLabel lblCpf = new JLabel("CPF");
+		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCpf.setBounds(22, 53, 46, 14);
+		panel.add(lblCpf);
+
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblSenha.setBounds(22, 112, 46, 14);
+		panel.add(lblSenha);
+
+		passwordField = new JPasswordField();
+		passwordField.setBounds(77, 110, 217, 20);
+		panel.add(passwordField);
+	}
+
+}
