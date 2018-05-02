@@ -13,9 +13,12 @@
 package negocio;
 
 import javax.swing.JOptionPane;
-import excecoes.CampoVazioException;
 
-public class ValidarCampos {
+import excecoes.CPFNaoEncontradoException;
+import excecoes.CampoVazioException;
+import excecoes.SenhaInvalidaException;
+
+public class ValidarDados {
 	static Fachada fachada = new Fachada();
 	public static boolean validarCampoVazio(String arg0, String arg1, String arg2, String arg3) {
 		try {
@@ -48,13 +51,16 @@ public class ValidarCampos {
 		try{
 			funcionario = (Funcionario) fachada.procurar(cpf);
 			if(!funcionario.getSenha().equals(senha)){
-				SenhaInvalidaException sie;
+				SenhaInvalidaException sie = new SenhaInvalidaException();
 				throw sie;
 			}
 		}catch(SenhaInvalidaException sie){
 			JOptionPane.showMessageDialog(null, sie.getMessage());
-		}catch(FuncionarioNaoEncontradoException fnee){
-			JOptionPane.showMessageDialog(null, fnee.getMessage());
+			return false;
+		}catch(CPFNaoEncontradoException cpfnee){
+			JOptionPane.showMessageDialog(null, cpfnee.getMessage());
+			return false;
 		}
+		return true;
 	}
 }

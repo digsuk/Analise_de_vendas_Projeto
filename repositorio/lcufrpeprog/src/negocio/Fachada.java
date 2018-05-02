@@ -11,6 +11,7 @@
  *-------------------------------------------*/
 package negocio;
 import dados.*;
+import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorio;
 public class Fachada {
 	private static Fachada instance;
@@ -32,7 +33,7 @@ public class Fachada {
 	public void cadastrar(Produto produto){
 		this.produto.inserir(produto);
 	}
-	public Object procurar(String identificador){
+	public Object procurar(String identificador)throws CPFNaoEncontradoException{
 		return produto.procurar(identificador);
 	}
 	public void remover(String identificador)  {

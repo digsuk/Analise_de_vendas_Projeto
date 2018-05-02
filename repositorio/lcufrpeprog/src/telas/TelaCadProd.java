@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
 import negocio.Fachada;
 import negocio.Mensagem;
 import negocio.Produto;
-import negocio.ValidarCampos;
+import negocio.ValidarDados;
 
 public class TelaCadProd extends JFrame {
 
@@ -113,7 +113,7 @@ public class TelaCadProd extends JFrame {
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (ValidarCampos.validarCampoVazio(textFieldNome.getText(), textFieldDescricao.getText(),
+				if (ValidarDados.validarCampoVazio(textFieldNome.getText(), textFieldDescricao.getText(),
 						textFieldQuantidade.getText(), textFieldValor.getText())) {
 					
 					Produto produto = new Produto(textFieldNome.getText(), textFieldDescricao.getText(),

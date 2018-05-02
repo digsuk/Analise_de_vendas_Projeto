@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import negocio.ValidarCampos;
+import negocio.ValidarDados;
 
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
@@ -111,10 +111,13 @@ public class Login extends JFrame {
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(ValidarCampos.validarCampoVazio(textFieldCPF.getText(), passwordField.getText())){
-					//TODO Validar dados de entrada: Criar método que recebe CPF e senha para validar no repositorio.
-					//TODO Verificar perfil: Criar método para identificar o perfil do usuário.
-					//TODO Chamar tela principal para usuário específico.
+				String cpf = textFieldCPF.getText();
+				String senha = passwordField.getText();
+				if(ValidarDados.validarCampoVazio(cpf,senha)){
+					if(ValidarDados.validarLogin(cpf, senha)){
+						//TODO Verificar perfil: Criar método para identificar o perfil do usuário.
+						//TODO Chamar tela principal para usuário específico.
+					}
 				}				
 			}
 		});

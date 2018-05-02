@@ -10,6 +10,7 @@
  *       |        |
  *-------------------------------------------*/
 package negocio;
+import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorio;
 public class CadastroProduto {
 	private IRepositorio repositorio;
@@ -31,7 +32,7 @@ public class CadastroProduto {
 		String comando = INSERIR + CAMPOS + valores;
 		repositorio.inserir(produto, comando);
 	}
-	public Object procurar(String identificador){
+	public Object procurar(String identificador) throws CPFNaoEncontradoException{
 		if(identificador != null){
 			String where = "WHERE nome = " + identificador;
 			String comando = PROCURAR + where;
