@@ -17,7 +17,7 @@ public class CadastroProduto {
 	private static final String INSERIR = "INSERT INTO produtos ";
 	private static final String PROCURAR = "SELECT * FROM produtos ";
 	private static final String REMOVER = "DELETE FROM produtos WHERE nome = ";
-	private static final String ATUALIZAR = "UPDATE produtos WHERE ";
+	private static final String ATUALIZAR = "UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, valor = ?, porcentagem = ?, chave = ? WHERE nome = ?";
 	private static final String CAMPOS = "(id, nome, descricao, quantidade, valor, porcentagem, chave) ";	
 	
 	public CadastroProduto(IRepositorio repositorio) {
@@ -46,7 +46,7 @@ public class CadastroProduto {
 		repositorio.remover(comando, identificador);
 	}
 	public void atualizar(Objetos objeto){
-		
+		repositorio.atualizar(objeto, ATUALIZAR);
 	}
 	
 }

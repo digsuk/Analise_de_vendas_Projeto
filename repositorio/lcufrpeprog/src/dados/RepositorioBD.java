@@ -14,6 +14,7 @@ import negocio.Objetos;
 import interfaces.IRepositorio;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -83,8 +84,10 @@ public class RepositorioBD implements IRepositorio {
 	
 	public void atualizar(Objetos objeto, String comando) {
 		try {
-			Statement stm = con.createStatement();
-			int res = stm.executeUpdate(comando);
+/*			Statement stm = con.createStatement();*/
+			PreparedStatement pstm = con.prepareStatement(comando);
+			
+			int res = pstm.executeUpdate(comando);
 			if (res > 0) {
 				System.out.println("Sucesso!");
 			} else {
