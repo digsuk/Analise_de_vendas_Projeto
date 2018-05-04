@@ -16,9 +16,13 @@ import javax.swing.JOptionPane;
 
 import excecoes.CPFNaoEncontradoException;
 import excecoes.CampoVazioException;
+import excecoes.EmailInvalidoException;
 import excecoes.SenhaInvalidaException;
 
 public class ValidarDados {
+	private static final String GERENTE = "Gerente";
+	private static final String VENDEDOR = "Vendedor";
+	private static Funcionario funcionario;
 	static Fachada fachada = new Fachada();
 	public static boolean validarCampoVazio(String arg0, String arg1, String arg2, String arg3) {
 		try {
@@ -47,7 +51,6 @@ public class ValidarDados {
 	}
 	
 	public static boolean validarLogin(String cpf, String senha){
-		Funcionario funcionario;
 		try{
 			funcionario = (Funcionario) fachada.procurar(cpf);
 			if(!funcionario.getSenha().equals(senha)){
@@ -60,6 +63,27 @@ public class ValidarDados {
 		}catch(CPFNaoEncontradoException cpfnee){
 			JOptionPane.showMessageDialog(null, cpfnee.getMessage());
 			return false;
+		}
+		return true;
+	}
+	
+	public static String identificaFuncao(){
+		switch(funcionario.getFuncao()){
+			case GERENTE: return GERENTE;
+			case VENDEDOR: return VENDEDOR;
+			default: return null;
+		}
+	}
+	
+	public static boolean validarEmail(String email){
+		try{
+			if(!email.matches("[\\w\\d]+@[^0-9]+(\\.com$|\\.br$)")){
+				EmailInvalidoException eie = new EmailInvalidoException();
+				throw eie;
+			}
+			
+		}catch(EmailInvalidoException eie ){
+			JOptionPane.showMessageDialog(null, eie.getMessage());
 		}
 		return true;
 	}

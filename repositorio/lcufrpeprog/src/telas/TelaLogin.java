@@ -18,12 +18,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import negocio.ClasseAssistente;
+import negocio.Mensagem;
 import negocio.ValidarDados;
 
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
@@ -32,16 +36,18 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Login extends JFrame {
+public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldCPF;
 	private JPasswordField passwordField;
-	public static Login instance;
-
-	public static Login getInstance() {
+	public static TelaLogin instance;
+	private static final String GERENTE = "Gerente";
+	private static final String VENDEDOR = "Vendedor";
+	
+	public static TelaLogin getInstance() {
 		if (instance == null) {
-			instance = new Login();
+			instance = new TelaLogin();
 		}
 		return instance;
 	}
@@ -53,7 +59,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					TelaLogin frame = new TelaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +71,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public TelaLogin() {
 		setTitle("An\u00E1lise de Vendas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
@@ -97,7 +103,12 @@ public class Login extends JFrame {
 		JButton btnEsqueceuASenha = new JButton("Esqueceu a senha?");
 		btnEsqueceuASenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO Chamar popup para informar o email.
+				String email, senha;
+				email = JOptionPane.showInputDialog(Mensagem.INFOEMAIL);
+				if(ValidarDados.validarEmail(email)){
+					senha = ClasseAssistente.gerarSenha();
+					ClasseAssistente.enviarEmail(email, senha);
+				}
 			}
 		});
 		btnEsqueceuASenha.setBorderPainted(false);
@@ -113,12 +124,20 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String cpf = textFieldCPF.getText();
 				String senha = passwordField.getText();
-				if(ValidarDados.validarCampoVazio(cpf,senha)){
-					if(ValidarDados.validarLogin(cpf, senha)){
-						//TODO Verificar perfil: Criar método para identificar o perfil do usuário.
-						//TODO Chamar tela principal para usuário específico.
+				if (ValidarDados.validarCampoVazio(cpf, senha)) {
+					if (ValidarDados.validarLogin(cpf, senha)) {
+						switch (ValidarDados.identificaFuncao()) {
+						case GERENTE:
+							TelaCadProd.getInstance().setVisible(true);
+							dispose();
+						case VENDEDOR:
+							//TelaCadProd.getInstance().setVisible(true);
+							dispose();
+						default: 
+							dispose();
+						}
 					}
-				}				
+				}
 			}
 		});
 		btnOk.setBounds(206, 172, 89, 23);
