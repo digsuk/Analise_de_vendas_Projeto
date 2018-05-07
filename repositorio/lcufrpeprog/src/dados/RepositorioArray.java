@@ -1,18 +1,21 @@
-/*---------------------------------------------
+/*------------------------------------------------------------
  * Autor: Jonathan Moura
  * Data:29/04/2018
- *---------------------------------------------
+ *------------------------------------------------------------
  * Descrição: Repositorio array padrão
  * 
- *---------------------------------------------
+ *------------------------------------------------------------
  * Histórico de modificação
- * Data    Autor    Descrição
- *       |        |
- *-------------------------------------------*/
+ * Data       Autor     Descrição
+ * 01/05  | Jonathan | Adição de exceção ao método procurar.
+ *------------------------------------------------------------*/
 package dados;
-import negocio.Objetos;
 
-public class RepositorioArray {
+import negocio.Objetos;
+import excecoes.CPFNaoEncontradoException;
+import interfaces.IRepositorio;
+
+public class RepositorioArray implements IRepositorio {
 	public static final int TAMANHO = 1000000;
 	private Objetos[] repositorio;
 	private int indice;
@@ -37,9 +40,11 @@ public class RepositorioArray {
 		return -1;
 	}
 
-	public void inserir(Objetos objeto) {
-		repositorio[indice] = objeto;
-		indice++;
+	public void inserir(Objetos objeto, String comando) {
+		if (!existe(objeto.getNome())) {
+			repositorio[indice] = objeto;
+			indice++;
+		}
 	}
 
 	public boolean existe(String identificador) {
@@ -50,14 +55,15 @@ public class RepositorioArray {
 			return true;
 	}
 
-	public Object procurar(String identificador) {
+	public Objetos procurar(String comando, String identificador) throws CPFNaoEncontradoException{
 		if (!existe(identificador)) {
-			System.err.println("Erro!");
+			CPFNaoEncontradoException cpfnee = new CPFNaoEncontradoException(identificador);
+			throw cpfnee;
 		}
 		return this.repositorio[i];
 	}
 
-	public void remover(String identificador) {
+	public void remover(String comando, String identificador) {
 		if (!existe(identificador)) {
 			System.err.println("Erro!");
 		}
@@ -67,7 +73,7 @@ public class RepositorioArray {
 		indice--;
 	}
 
-	public void atualizar(Objetos objeto, String identificador) {
+	public void atualizar(Objetos objeto, String comando) {
 		if (!existe(objeto.getNome())) {
 			System.err.println("Erro!");
 		}
