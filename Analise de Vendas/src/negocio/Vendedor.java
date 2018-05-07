@@ -1,0 +1,22 @@
+/*---------------------------------------------
+ * Autor: Jonathan Moura
+ * Data:29/04/2018
+ *---------------------------------------------
+ * Descrição: Classe do vendedor
+ * 
+ *---------------------------------------------
+ * Histórico de modificação
+ * Data    Autor    Descrição
+ *       |        |
+ *-------------------------------------------*/
+
+package negocio;
+
+public class Vendedor extends Funcionario{
+
+	public Vendedor(String nome, String cpf, String email, String senha, String funcao, String chave) {
+		super(nome, cpf, email, senha, funcao, chave);
+		
+	}
+
+}
