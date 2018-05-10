@@ -27,5 +27,20 @@ public class TelasAssistentes {
 		confirm = JOptionPane.showConfirmDialog(null, "Você realmente deseja excluir?", "Excluído", JOptionPane.YES_NO_OPTION);
 	}
 	
+	public static void ConfirmarBusca() {
+		confirm = JOptionPane.showConfirmDialog(null, "Confirma os dados para busca?", "Busca Concluída", JOptionPane.YES_NO_OPTION);
+	}
+	
+	public static void ConfirmarEdicaoDados() {
+		confirm = JOptionPane.showConfirmDialog(null, "Confirma os dados?", "Edição Concluída", JOptionPane.YES_NO_OPTION);
+	}
+	
+	public static void ConfirmarProduto() {
+		confirm = JOptionPane.showConfirmDialog(null, "Você realmente deseja cadastrar o produto?", "Cadastrado", JOptionPane.YES_NO_OPTION);
+	}
+	
+	public static void ConfirmarDistribuicao() {
+		confirm = JOptionPane.showConfirmDialog(null, "Confirma a distribuição?", "Distrubuído", JOptionPane.YES_NO_OPTION);
+	}
 
 }
