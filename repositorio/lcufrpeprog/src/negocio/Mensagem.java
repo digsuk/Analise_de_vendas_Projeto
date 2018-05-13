@@ -15,7 +15,7 @@ public class Mensagem {
 	public static final String CADPRODSUC = "Produto cadastrado com sucesso!";
 	public static final String CAMPOVAZIO = "Preencha todos os campos vazios.";
 	public static final String SENHAINVALIDA = "Senha inválida, insira novamente.";
-	public static final String CPFNENCONTRADO = "CPF não está cadastrado.";
+	public static final String CPFNENCONTRADO = " CPF não está cadastrado.";
 	public static final String EMAILINVALIDO = "Email inválido, informe novamente.";
 	public static final String INFOEMAIL = "Informe seu email cadastrado para que possamos lhe enviar uma nova senha.";
 	public static final String SUBJECTSENHA = "Nova senha.";

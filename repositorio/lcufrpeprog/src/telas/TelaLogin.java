@@ -104,7 +104,7 @@ public class TelaLogin extends JFrame {
 		btnEsqueceuASenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String email, senha;
-				email = JOptionPane.showInputDialog(Mensagem.INFOEMAIL);
+				email = JOptionPane.showInputDialog(null, Mensagem.INFOEMAIL,"",JOptionPane.QUESTION_MESSAGE);
 				if(ValidarDados.validarEmail(email)){
 					senha = ClasseAssistente.gerarSenha();
 					ClasseAssistente.enviarEmail(email, senha);
