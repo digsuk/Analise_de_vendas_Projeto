@@ -22,6 +22,8 @@ import excecoes.SenhaInvalidaException;
 public class ValidarDados {
 	private static final String GERENTE = "Gerente";
 	private static final String VENDEDOR = "Vendedor";
+	private static final String MSGALERT = "Mensagem de alerta";
+	private static final String MSGERROR = "Mensagem de erro";
 	private static Funcionario funcionario;
 	static Fachada fachada = new Fachada();
 	public static boolean validarCampoVazio(String arg0, String arg1, String arg2, String arg3) {
@@ -31,7 +33,7 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			JOptionPane.showMessageDialog(null, cve.getMessage());
+			JOptionPane.showMessageDialog(null, cve.getMessage(),MSGALERT,JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		return true;
@@ -44,7 +46,7 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			JOptionPane.showMessageDialog(null, cve.getMessage());
+			JOptionPane.showMessageDialog(null, cve.getMessage(),MSGALERT,JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		return true;
@@ -58,10 +60,10 @@ public class ValidarDados {
 				throw sie;
 			}
 		}catch(SenhaInvalidaException sie){
-			JOptionPane.showMessageDialog(null, sie.getMessage());
+			JOptionPane.showMessageDialog(null, sie.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
 			return false;
 		}catch(CPFNaoEncontradoException cpfnee){
-			JOptionPane.showMessageDialog(null, cpfnee.getMessage());
+			JOptionPane.showMessageDialog(null, cpfnee.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		return true;
@@ -83,7 +85,7 @@ public class ValidarDados {
 			}
 			
 		}catch(EmailInvalidoException eie ){
-			JOptionPane.showMessageDialog(null, eie.getMessage());
+			JOptionPane.showMessageDialog(null, eie.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
 		}
 		return true;
 	}
