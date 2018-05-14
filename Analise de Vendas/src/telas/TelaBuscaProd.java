@@ -2,7 +2,7 @@
  * Autor: Jonathan Moura
  * Data:13/05/2018
  *---------------------------------------------
- * Descrição: Classe de tela do cadastro de 
+ * Descrição: Classe de tela da busca de 
  * 			  produtos.
  *---------------------------------------------
  * Histórico de modificação
