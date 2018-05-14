@@ -30,6 +30,11 @@ import negocio.Fachada;
 import negocio.Mensagem;
 import negocio.Produto;
 import negocio.ValidarDados;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class TelaCadProd extends JFrame {
 
@@ -149,5 +154,67 @@ public class TelaCadProd extends JFrame {
 		textFieldValor.setColumns(10);
 		textFieldValor.setBounds(204, 211, 86, 20);
 		panel.add(textFieldValor);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(156, 60, 25, 23);
+		contentPane.add(label);
+		
+		JLabel lblCadastroDeProduto = new JLabel("Cadastro de produto");
+		lblCadastroDeProduto.setForeground(SystemColor.window);
+		lblCadastroDeProduto.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCadastroDeProduto.setBounds(26, 105, 173, 14);
+		contentPane.add(lblCadastroDeProduto);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 594, 21);
+		contentPane.add(menuBar);
+		
+		JMenu mnProduto = new JMenu("Produto");
+		menuBar.add(mnProduto);
+		
+		JMenuItem mntmCadastrar = new JMenuItem("Cadastrar");
+		mnProduto.add(mntmCadastrar);
+		
+		JMenuItem mntmEditar = new JMenuItem("Buscar");
+		mnProduto.add(mntmEditar);
+		
+		JMenuItem mntmDistribuir = new JMenuItem("Distribuir");
+		mnProduto.add(mntmDistribuir);
+		
+		JMenu mnVendedor = new JMenu("Vendedor");
+		menuBar.add(mnVendedor);
+		
+		JMenuItem mntmCadastrar_1 = new JMenuItem("Cadastrar");
+		mnVendedor.add(mntmCadastrar_1);
+		
+		JMenuItem mntmBuscar = new JMenuItem("Buscar");
+		mnVendedor.add(mntmBuscar);
+		
+		JMenu mnVendas = new JMenu("Vendas");
+		menuBar.add(mnVendas);
+		
+		JMenuItem mntmRelatrio = new JMenuItem("Relat\u00F3rio");
+		mnVendas.add(mntmRelatrio);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(26, 60, 160, 23);
+		contentPane.add(panel_1);
+		
+		JButton button_1 = new JButton(" Informa\u00E7\u00F5es de ajuda");
+		button_1.setForeground(Color.BLACK);
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		button_1.setBorderPainted(false);
+		button_1.setBorder(null);
+		button_1.setBackground(Color.WHITE);
+		button_1.setBounds(0, 0, 123, 23);
+		panel_1.add(button_1);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(TelaCadProd.class.getResource("/imagem/ajuda.png")));
+		label_1.setBackground(Color.WHITE);
+		label_1.setBounds(130, 0, 25, 23);
+		panel_1.add(label_1);
 	}
 }
