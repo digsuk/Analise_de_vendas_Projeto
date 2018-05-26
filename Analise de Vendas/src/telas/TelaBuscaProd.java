@@ -41,10 +41,14 @@ public class TelaBuscaProd extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
+	public static TelaBuscaProd instance;
+	
+	public static TelaBuscaProd getInstance() {
+		if (instance == null)
+			instance = new TelaBuscaProd();
+		return instance;
+	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

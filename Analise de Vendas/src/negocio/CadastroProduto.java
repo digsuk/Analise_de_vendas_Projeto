@@ -10,43 +10,24 @@
  *       |        |
  *-------------------------------------------*/
 package negocio;
-import excecoes.CPFNaoEncontradoException;
-import interfaces.IRepositorio;
+import interfaces.IRepositorioProduto;
 public class CadastroProduto {
-	private IRepositorio repositorio;
-	private static final String INSERIR = "INSERT INTO produtos ";
-	private static final String PROCURAR = "SELECT * FROM produtos ";
-	private static final String REMOVER = "DELETE FROM produtos WHERE nome = ";
-	private static final String ATUALIZAR = "UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, valor = ?, porcentagem = ?, chave = ? WHERE nome = ?";
-	private static final String CAMPOS = "(id, nome, descricao, quantidade, valor, porcentagem, chave) ";	
+	private IRepositorioProduto repositorio;
 	
-	public CadastroProduto(IRepositorio repositorio) {
+	public CadastroProduto(IRepositorioProduto repositorio) {
 		this.repositorio = repositorio;
 	}
-	
-	/*Construir comando sql para inserir os valores 
-	 *dos atributos do objeto no repositorio BD ou Array */
 	public void inserir(Produto produto){
-		String valores =  "values (default," + produto.getNome() + "," + produto.getDescricao() + "," + produto.getQuantidade()
-		 				 + "," + produto.getValor() + "," + produto.getPorcentagem() + "," + produto.getChave() + ")";
-		String comando = INSERIR + CAMPOS + valores;
-		repositorio.inserir(produto, comando);
+		repositorio.inserir(produto);
 	}
-	public Object procurar(String identificador) throws CPFNaoEncontradoException{
-		if(identificador != null){
-			String where = "WHERE nome = " + identificador;
-			String comando = PROCURAR + where;
-			return repositorio.procurar(comando, identificador);
-		}else{
-			return repositorio.procurar(PROCURAR, identificador);
-		}
+	public Produto procurar(String identificador) {
+			return repositorio.procurar(identificador);
 	}
 	public void remover(String identificador){
-		String comando = REMOVER + identificador;
-		repositorio.remover(comando, identificador);
+		repositorio.remover(identificador);
 	}
-	public void atualizar(Objetos objeto){
-		repositorio.atualizar(objeto, ATUALIZAR);
+	public void atualizar(Produto produto){
+		repositorio.atualizar(produto);
 	}
 	
 }

@@ -54,7 +54,7 @@ public class ValidarDados {
 	
 	public static boolean validarLogin(String cpf, String senha){
 		try{
-			funcionario = (Funcionario) fachada.procurar(cpf);
+			funcionario = (Funcionario) fachada.procurarFunc(cpf);
 			if(!funcionario.getSenha().equals(senha)){
 				SenhaInvalidaException sie = new SenhaInvalidaException();
 				throw sie;

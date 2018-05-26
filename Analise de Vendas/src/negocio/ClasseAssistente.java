@@ -71,7 +71,6 @@ public class ClasseAssistente {
         session.setDebug(true);
 
         try {
-
               Message message = new MimeMessage(session);
               message.setFrom(new InternetAddress(ADMEMAIL)); //Remetente
 
@@ -88,5 +87,13 @@ public class ClasseAssistente {
          } catch (MessagingException e) {
               throw new RuntimeException(e);
         }
-  }
+	}
+	
+	public static void usuarioTeste(){
+		Gerente gerente = new Gerente("Gerente de Vendas","01234567899","adm.analise.vendas@gmail.com",
+								 	  "123456","Gerente","01234567899");
+		Fachada fachada = new Fachada();
+		
+		fachada.cadastrar(gerente);
+	}
 }
