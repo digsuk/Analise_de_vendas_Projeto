@@ -10,6 +10,8 @@
  * 14/05/18 |Jonathan Moura | CRUD funcionário
  *-------------------------------------------*/
 package negocio;
+import java.sql.ResultSet;
+
 import dados.*;
 import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorioFuncionario;
@@ -26,7 +28,7 @@ public class Fachada {
 		funcionario = new CadastroFuncionario(repFunc);
 	}
 	
-	public Fachada getInstance(){
+	public static Fachada getInstance(){
 		if(instance == null){
 			instance = new Fachada();
 			return instance;
@@ -45,6 +47,9 @@ public class Fachada {
 	}	
 	public void atualizar(Produto produto)  {
 		this.produto.atualizar(produto);
+	}
+	public ResultSet listarProd(){
+		return this.produto.listar();
 	}
 	//FIM CRUD de produto
 	

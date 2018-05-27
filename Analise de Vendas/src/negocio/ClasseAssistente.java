@@ -24,7 +24,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class ClasseAssistente {
-	
 	//Gera uma senha de 10 caracteres, através da conversão de 
 	//valores inteiros aleatóriso em caracteres.
 	public static String gerarSenha(){
@@ -91,9 +90,7 @@ public class ClasseAssistente {
 	
 	public static void usuarioTeste(){
 		Gerente gerente = new Gerente("Gerente de Vendas","01234567899","adm.analise.vendas@gmail.com",
-								 	  "123456","Gerente","01234567899");
-		Fachada fachada = new Fachada();
-		
-		fachada.cadastrar(gerente);
+								 	  "123456","Gerente","01234567899");		
+		Fachada.getInstance().cadastrar(gerente);
 	}
 }

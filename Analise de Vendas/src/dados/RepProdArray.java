@@ -10,6 +10,8 @@
  *       |        |
  *-------------------------------------------*/
 package dados;
+import java.sql.ResultSet;
+
 import interfaces.IRepositorioProduto;
 import negocio.Produto;
 public class RepProdArray implements IRepositorioProduto{
@@ -27,7 +29,7 @@ public class RepProdArray implements IRepositorioProduto{
 		i = 0;
 		if (indice != 0) {
 			while (!identificador.equals(repositorio[i].getNome())) {
-				if (i > indice) {
+				if (i == indice - 1) {
 					return -1;
 				} else
 					i++;
@@ -74,5 +76,10 @@ public class RepProdArray implements IRepositorioProduto{
 			System.err.println("Erro!");
 		}
 		repositorio[i] = produto;
+	}
+	
+	public ResultSet listar(){
+		ResultSet rs = null;
+		return rs;
 	}
 }

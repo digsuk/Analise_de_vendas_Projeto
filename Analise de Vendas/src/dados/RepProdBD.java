@@ -82,6 +82,24 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 		}
 	}
 
+	public ResultSet listar(){
+		String comando = PROCURAR;
+		try {
+			Statement stm = con.createStatement(1, 0);
+			ResultSet rs = stm.executeQuery(comando);
+			if (rs != null) {
+				System.out.println("Sucesso!");
+				return rs;
+			} else {
+				System.err.println("Erro!");
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public void remover(String identificador) {
 		String comando = REMOVER + identificador;
 		try {

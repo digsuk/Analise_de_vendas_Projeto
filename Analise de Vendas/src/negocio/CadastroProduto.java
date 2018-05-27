@@ -10,6 +10,8 @@
  *       |        |
  *-------------------------------------------*/
 package negocio;
+import java.sql.ResultSet;
+
 import interfaces.IRepositorioProduto;
 public class CadastroProduto {
 	private IRepositorioProduto repositorio;
@@ -29,5 +31,7 @@ public class CadastroProduto {
 	public void atualizar(Produto produto){
 		repositorio.atualizar(produto);
 	}
-	
+	public ResultSet listar(){
+		return repositorio.listar();
+	}
 }

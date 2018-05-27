@@ -10,6 +10,7 @@
  *-------------------------------------------*/
 package dados;
 
+import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorioFuncionario;
 import negocio.Funcionario;
 
@@ -27,8 +28,8 @@ public class RepFuncArray implements IRepositorioFuncionario{
 	public int getIndice(String identificador) {
 		i = 0;
 		if (indice != 0) {
-			while (!identificador.equals(repositorio[i].getNome())) {
-				if (i > indice) {
+			while (!identificador.equals(repositorio[i].getCpf())) {
+				if (i == indice - 1) {
 					return -1;
 				} else
 					i++;
@@ -39,7 +40,7 @@ public class RepFuncArray implements IRepositorioFuncionario{
 	}
 
 	public void inserir(Funcionario funcionario) {
-		if (!existe(funcionario.getNome())) {
+		if (!existe(funcionario.getCpf())) {
 			repositorio[indice] = funcionario;
 			indice++;
 		}
@@ -53,11 +54,13 @@ public class RepFuncArray implements IRepositorioFuncionario{
 			return true;
 	}
 
-	public Funcionario procurar(String identificador) {
+	public Funcionario procurar(String identificador) throws CPFNaoEncontradoException{
 		if (existe(identificador)) {
 			return this.repositorio[i];
+		} else{
+			CPFNaoEncontradoException cpfnee = new CPFNaoEncontradoException(identificador);
+			throw cpfnee;
 		}
-		return null;
 	}
 
 	public void remover(String identificador) {
