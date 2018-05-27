@@ -18,14 +18,13 @@ import excecoes.CPFNaoEncontradoException;
 import excecoes.CampoVazioException;
 import excecoes.EmailInvalidoException;
 import excecoes.SenhaInvalidaException;
+import telas.TelasAssistentes;
 
 public class ValidarDados {
 	private static final String GERENTE = "Gerente";
 	private static final String VENDEDOR = "Vendedor";
-	private static final String MSGALERT = "Mensagem de alerta";
-	private static final String MSGERROR = "Mensagem de erro";
 	private static Funcionario funcionario;
-	static Fachada fachada = new Fachada();
+	
 	public static boolean validarCampoVazio(String arg0, String arg1, String arg2, String arg3) {
 		try {
 			if (arg0.equals("") || arg1.equals("") || arg2.equals("") || arg3.equals("")) {
@@ -33,7 +32,7 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			JOptionPane.showMessageDialog(null, cve.getMessage(),MSGALERT,JOptionPane.WARNING_MESSAGE);
+			TelasAssistentes.campoVazio(cve);
 			return false;
 		}
 		return true;
@@ -46,7 +45,20 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			JOptionPane.showMessageDialog(null, cve.getMessage(),MSGALERT,JOptionPane.WARNING_MESSAGE);
+			TelasAssistentes.campoVazio(cve);
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean validarCampoVazio(String arg0) {
+		try {
+			if (arg0.equals("")) {
+				CampoVazioException cve = new CampoVazioException();
+				throw cve;
+			}
+		} catch (CampoVazioException cve) {
+			TelasAssistentes.campoVazio(cve);
 			return false;
 		}
 		return true;
@@ -54,16 +66,16 @@ public class ValidarDados {
 	
 	public static boolean validarLogin(String cpf, String senha){
 		try{
-			funcionario = (Funcionario) fachada.procurar(cpf);
+			funcionario = Fachada.getInstance().procurarFunc(cpf);
 			if(!funcionario.getSenha().equals(senha)){
 				SenhaInvalidaException sie = new SenhaInvalidaException();
 				throw sie;
 			}
 		}catch(SenhaInvalidaException sie){
-			JOptionPane.showMessageDialog(null, sie.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
+			TelasAssistentes.senhaInvalida(sie);
 			return false;
 		}catch(CPFNaoEncontradoException cpfnee){
-			JOptionPane.showMessageDialog(null, cpfnee.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
+			TelasAssistentes.cpfNaoEncontrado(cpfnee);
 			return false;
 		}
 		return true;
@@ -85,7 +97,7 @@ public class ValidarDados {
 			}
 			
 		}catch(EmailInvalidoException eie ){
-			JOptionPane.showMessageDialog(null, eie.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
+			TelasAssistentes.emailInvalido(eie);
 		}
 		return true;
 	}

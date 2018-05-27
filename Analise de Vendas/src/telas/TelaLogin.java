@@ -61,6 +61,8 @@ public class TelaLogin extends JFrame {
 				try {
 					TelaLogin frame = new TelaLogin();
 					frame.setVisible(true);
+					//TESTE
+					ClasseAssistente.usuarioTeste(); //Gerar usuário teste com função de gerente.
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,6 +74,7 @@ public class TelaLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaLogin() {
+		setResizable(false);
 		setTitle("An\u00E1lise de Vendas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
