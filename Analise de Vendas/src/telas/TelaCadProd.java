@@ -39,7 +39,6 @@ import java.awt.SystemColor;
 public class TelaCadProd extends JFrame {
 
 	private JPanel contentPane;
-	private Fachada fachada = new Fachada();
 	public static TelaCadProd instance;
 	private JTextField textFieldNome;
 	private JTextField textFieldDescricao;
@@ -119,15 +118,17 @@ public class TelaCadProd extends JFrame {
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (ValidarDados.validarCampoVazio(textFieldNome.getText(), textFieldDescricao.getText(),
-						textFieldQuantidade.getText(), textFieldValor.getText())) {
-					
-					Produto produto = new Produto(textFieldNome.getText(), textFieldDescricao.getText(),
-							Integer.parseInt(textFieldQuantidade.getText()),
-							Double.parseDouble(textFieldValor.getText()), "", "");
-					
-					fachada.cadastrar(produto);
-					JOptionPane.showMessageDialog(null, Mensagem.CADPRODSUC);
-					limparCampos();
+						textFieldQuantidade.getText(), textFieldValor.getText())) {			
+					try{
+						Produto produto = new Produto(textFieldNome.getText(), textFieldDescricao.getText(),
+						Integer.parseInt(textFieldQuantidade.getText()),
+						Double.parseDouble(textFieldValor.getText()), "", "");
+						Fachada.getInstance().cadastrar(produto);
+						JOptionPane.showMessageDialog(null, Mensagem.CADPRODSUC);
+						limparCampos();
+					}catch(NumberFormatException nfe){
+						TelasAssistentes.numberFormat();
+					} 
 				}
 			}
 		});
@@ -176,6 +177,13 @@ public class TelaCadProd extends JFrame {
 		mnProduto.add(mntmCadastrar);
 		
 		JMenuItem mntmEditar = new JMenuItem("Buscar");
+		mntmEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaBuscaProd.getInstance().setVisible(true);
+				limparCampos();
+				dispose();
+			}
+		});
 		mnProduto.add(mntmEditar);
 		
 		JMenuItem mntmDistribuir = new JMenuItem("Distribuir");

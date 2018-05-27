@@ -11,18 +11,26 @@
  *-------------------------------------------*/
 package negocio;
 
-public class Produto extends Objetos{
-	private String descricao, porcentagem, chave;
+public class Produto {
+	private String nome, descricao, porcentagem, chave;
 	private int quantidade;
 	private double valor;
 
 	public Produto(String nome, String descricao, int quantidade, double valor, String porcentagem, String chave) {
-		setNome(nome);
+		this.nome = nome;
 		this.descricao = descricao;
 		this.quantidade = quantidade;
 		this.valor = valor;
 		this.porcentagem = porcentagem;
 		this.chave = chave;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
