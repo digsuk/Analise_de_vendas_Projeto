@@ -21,11 +21,11 @@ import interfaces.IRepositorioProduto;
 import negocio.Produto;
 
 public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
-	private static final String INSERIR   = "INSERT INTO produtos ";
-	private static final String PROCURAR  = "SELECT * FROM produtos ";
-	private static final String REMOVER   = "DELETE FROM produtos WHERE nome = ";
-	private static final String ATUALIZAR = "UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, valor = ?, porcentagem = ?, chave = ? WHERE nome = ?";
-	private static final String CAMPOS    = "(id, nome, descricao, quantidade, valor, porcentagem, chave) ";	
+	private static final String INSERIR   = "INSERT INTO produto ";
+	private static final String PROCURAR  = "SELECT * FROM produto ";
+	private static final String REMOVER   = "DELETE FROM produto WHERE nome = ";
+	private static final String ATUALIZAR = "UPDATE produto SET nome = ?, descrição = ?, quantidade = ?, valor = ?, porcentagem = ?, chave = ? WHERE nome = ?";
+	private static final String CAMPOS    = "(id, nome, descrição, quantidade, valor, porcentagem, chave) ";	
 	
 	public RepProdBD(){
 		super();
@@ -36,12 +36,12 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 	public void inserir(Produto produto) {
 		/*Construir comando sql para inserir os valores 
 		 *dos atributos do produto no repositorio de banco de dados */
-		String valores =  "values (default," + produto.getNome() + "," 
-				 							 + produto.getDescricao() + "," 
-				 							 + produto.getQuantidade() + "," 
-				 							 + produto.getValor() + "," 
-				 							 + produto.getPorcentagem() + "," 
-				 							 + produto.getChave() + ")";
+		String valores =  "values (default,\'" + produto.getNome() 		  + "\',\'" 
+				 							   + produto.getDescricao()   + "\'," 
+				 							   + produto.getQuantidade()  + "," 
+				 							   + produto.getValor() 	  + ",\'" 
+				 							   + produto.getPorcentagem() + "\',\'" 
+				 							   + produto.getChave() 	  + "\')";
 		String comando = INSERIR + CAMPOS + valores;
 		//Grava no banco de dados
 		try {
@@ -58,12 +58,12 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 	}
 
 	public Produto procurar(String identificador) {
-		String where = "WHERE nome = " + identificador;
+		String where = "WHERE nome = " + "\'"+identificador+"\'";
 		String comando = PROCURAR + where;
 		try {
 			Statement stm = con.createStatement(1, 0);
 			ResultSet rs = stm.executeQuery(comando);
-			if (rs != null) {
+			if (rs.next()) {
 				Produto produto = new Produto(rs.getString("nome"),
 											  rs.getString("descrição"),
 											  rs.getInt("quantidade"),
@@ -101,7 +101,7 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 	}
 	
 	public void remover(String identificador) {
-		String comando = REMOVER + identificador;
+		String comando = REMOVER + "\'"+identificador+"\'";
 		try {
 			Statement stm = con.createStatement();
 			int res = stm.executeUpdate(comando);

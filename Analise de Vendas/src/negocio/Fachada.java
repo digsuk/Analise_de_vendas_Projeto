@@ -21,7 +21,7 @@ public class Fachada {
 	private CadastroProduto produto;
 	private CadastroFuncionario funcionario;
 	public Fachada(){
-		IRepositorioProduto repProd = new RepProdArray();
+		IRepositorioProduto repProd = new RepProdBD();
 		IRepositorioFuncionario repFunc = new RepFuncArray();
 		
 		produto = new CadastroProduto(repProd);

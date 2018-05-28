@@ -21,5 +21,6 @@ public class Mensagem {
 	public static final String SUBJECTSENHA = "Nova senha.";
 	public static final String TEXTSENHA = "Sua nova senha foi gerada: ";
 	public static final String NUMBERFORMAT = "Insira apenas valores númericos nos campos de \"Quantidade\" e \"valor\"(inserir ponto ao invés de vírgula)."; 
-
+	public static final String SELECTROW = "Selecione ao menos uma linha.";
+	public static final String SELECT1ROW = "Selecione uma linha para edição.";
 }

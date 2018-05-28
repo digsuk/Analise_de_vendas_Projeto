@@ -8,8 +8,7 @@
  * Histórico de modificação
  * Data             Autor                   Descrição
  * 09/05/2018 |  Diogo Souza      | Adição do método confirmar exclusão;
- * 26/05/2018 |  Jonathan Moura   | Adição do método numberFormat e 
- * 									constantes MSGALERT e MSGERROR.
+ * 26/05/2018 |  Jonathan Moura   | Adição de métodos e constantes.
  *----------------------------------------------------------------------*/
 
 package telas;
@@ -22,7 +21,7 @@ import excecoes.EmailInvalidoException;
 import excecoes.SenhaInvalidaException;
 import negocio.Mensagem;
 
-public class TelasAssistentes {
+public class Popup {
 	private static final String MSGALERT = "Mensagem de alerta";
 	private static final String MSGERROR = "Mensagem de erro";
 	private static int confirm;
@@ -70,5 +69,13 @@ public class TelasAssistentes {
 	
 	public static void emailInvalido(EmailInvalidoException eie){
 		JOptionPane.showMessageDialog(null, eie.getMessage(),MSGERROR,JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public static void selectRow(){
+		JOptionPane.showMessageDialog(null, Mensagem.SELECTROW,MSGALERT,JOptionPane.WARNING_MESSAGE);
+	}
+	
+	public static void select1Row(){
+		JOptionPane.showMessageDialog(null, Mensagem.SELECT1ROW,MSGALERT,JOptionPane.WARNING_MESSAGE);
 	}
 }

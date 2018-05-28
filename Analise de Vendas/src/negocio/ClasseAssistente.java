@@ -13,6 +13,10 @@
 package negocio;
 
 import java.util.Random;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Address;
 import javax.mail.Message;
@@ -22,8 +26,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JTable;
 
 public class ClasseAssistente {
+	
 	//Gera uma senha de 10 caracteres, através da conversão de 
 	//valores inteiros aleatóriso em caracteres.
 	public static String gerarSenha(){
@@ -88,6 +94,34 @@ public class ClasseAssistente {
         }
 	}
 	
+	public static void montarTabelaProduto(ResultSet rs, ModeloTabelaProduto modelo, JTable table){
+		List produtos = new ArrayList();
+		try{	
+			while(rs.next()){
+				Produto p = new Produto();
+				p.setNome(rs.getString("nome"));
+				p.setDescricao(rs.getString("descrição"));
+				p.setQuantidade(rs.getInt("quantidade"));
+				p.setValor(rs.getDouble("valor"));
+				produtos.add(p);
+				p = null;	
+			}
+			modelo.addProdutoList(produtos);
+		}catch(SQLException sqle){
+			
+		}
+	}
+
+	public static void montarTabelaProduto(Produto produto, JTable table){		
+		if(produto != null){
+			table.setValueAt(produto.getNome(), 0, 0);
+			table.setValueAt(produto.getDescricao(), 0, 1);
+			table.setValueAt(produto.getQuantidade(), 0, 2);
+			table.setValueAt(produto.getValor(), 0, 3);
+		}
+	}
+	
+	//Gerar usuario para teste com perfil de gerente
 	public static void usuarioTeste(){
 		Gerente gerente = new Gerente("Gerente de Vendas","01234567899","adm.analise.vendas@gmail.com",
 								 	  "123456","Gerente","01234567899");		

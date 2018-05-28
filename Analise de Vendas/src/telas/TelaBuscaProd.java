@@ -35,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 
 import negocio.ClasseAssistente;
 import negocio.Fachada;
+import negocio.ModeloTabelaProduto;
 import negocio.Produto;
 import negocio.ValidarDados;
 
@@ -44,6 +45,8 @@ import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class TelaBuscaProd extends JFrame {
@@ -51,8 +54,11 @@ public class TelaBuscaProd extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTable table;
+	private ModeloTabelaProduto modelo; 
 	JScrollPane scrollPane;
 	public static TelaBuscaProd instance;
+	JButton btnRemover;
+	JButton btnEditar; 
 	
 	public static TelaBuscaProd getInstance() {
 		if (instance == null)
@@ -64,36 +70,6 @@ public class TelaBuscaProd extends JFrame {
 		textFieldNome.setText("");
 		if(table.getRowCount() > 0)
 			table.removeRowSelectionInterval(0, table.getRowCount() - 1);
-	}
-	
-	public void montarTabela(ResultSet rs) {
-		int linhas,i = 0;
-		try{
-			if(table.getRowCount() > 0)
-				table.removeRowSelectionInterval(0, table.getRowCount() - 1);
-			while(rs.next()){
-				table.setValueAt(false, i, 0);;
-				table.setValueAt(rs.getString("nome"), i, 1);
-				table.setValueAt(rs.getString("descrição"), i, 2);
-				table.setValueAt(rs.getInt("quantidade"), i, 3);
-				table.setValueAt(rs.getDouble("valor"), i, 4);	
-				i++;
-			}
-		}catch(SQLException sqle){
-			
-		}
-	}
-	
-	public void montarTabela(Produto produto){
-		if(table.getRowCount() > 0)
-			table.removeRowSelectionInterval(0, table.getRowCount() - 1);
-		if(produto != null){
-			table.setValueAt(false, 0, 0);
-			table.setValueAt(produto.getNome(), 0, 1);
-			table.setValueAt(produto.getDescricao(), 0, 2);
-			table.setValueAt(produto.getQuantidade(), 0, 3);
-			table.setValueAt(produto.getValor(), 0, 4); 
-		}
 	}
 		
 	public static void main(String[] args) {
@@ -164,43 +140,37 @@ public class TelaBuscaProd extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textFieldNome.getText().equals("")) {
+					if(table.getRowCount() > 0)
+						for(int i = 0; i < table.getRowCount(); i++)
+							modelo.removeProdutoAt(i);
 					ResultSet rs;
 					rs = Fachada.getInstance().listarProd();
-					montarTabela(rs);
+					ClasseAssistente.montarTabelaProduto(rs, modelo, table);
 				} else{
+					if(table.getRowCount() > 0)
+						for(int i = 0; i < table.getRowCount(); i++)
+							modelo.removeProdutoAt(i);
 					Produto produto;
 					produto = Fachada.getInstance().procurarProd(textFieldNome.getText());
-					montarTabela(produto);
+					ClasseAssistente.montarTabelaProduto(produto, table);
 				}
 				scrollPane.setVisible(true);
+				btnEditar.setVisible(true);
+				btnRemover.setVisible(true);
 			}
 		});
 		btnBuscar.setBounds(349, 28, 89, 23);
 		panel.add(btnBuscar);
-				
-		table = new JTable();
+		
+		modelo = new ModeloTabelaProduto();
+		table = new JTable(modelo);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, "", "", "", ""},
-			},
-			new String[] {
-				"Selecionar", "Nome", "Descri\u00E7\u00E3o", "Quantidade", "Valor"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Boolean.class, Object.class, Object.class, Object.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
 		table.setBounds(68, 163, 100, 30);
 		table.setPreferredScrollableViewportSize(new Dimension(500,100));
 		table.setFillsViewportHeight(true);
 
 		scrollPane=new JScrollPane(table);
-		scrollPane.setBounds(59, 118, 449, 100);
+		scrollPane.setBounds(20, 118, 449, 100);
 		panel.add(scrollPane);
 		scrollPane.setVisible(false);
 		
@@ -213,11 +183,47 @@ public class TelaBuscaProd extends JFrame {
 		separator.setBounds(10, 93, 574, 14);
 		panel.add(separator);
 		
-		JLabel lblNewLabel_1 = new JLabel("Busca de produto");
-		lblNewLabel_1.setForeground(SystemColor.window);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_1.setBounds(26, 105, 173, 14);
-		contentPane.add(lblNewLabel_1);
+		btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Produto produto;
+				int[] linhas = table.getSelectedRows(); 
+				if(linhas.length>0){
+					for(int i = 0; i < linhas.length; i++){
+						produto = modelo.removeProdutoAt(i);
+						Fachada.getInstance().removerProd(produto.getNome());
+					}
+				}else{
+					Popup.selectRow();
+				}
+			}
+		});
+		btnRemover.setBounds(484, 121, 89, 23);
+		panel.add(btnRemover);
+		btnRemover.setVisible(false);
+
+		btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Produto produto;
+				int[] linhas = table.getSelectedRows();
+				if(linhas.length == 1){
+					TelaEditProd.getInstance(modelo.getProdutoAt(linhas[0])).setVisible(true);
+					TelaBuscaProd.getInstance().setVisible(false);
+				}else{
+					Popup.select1Row();
+				}
+			}
+		});
+		btnEditar.setBounds(484, 166, 89, 23);
+		panel.add(btnEditar);
+		btnEditar.setVisible(false);
+		
+		JLabel lblBuscaDeProduto = new JLabel("Busca de produto");
+		lblBuscaDeProduto.setForeground(SystemColor.window);
+		lblBuscaDeProduto.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblBuscaDeProduto.setBounds(26, 105, 173, 14);
+		contentPane.add(lblBuscaDeProduto);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 594, 21);
@@ -231,7 +237,7 @@ public class TelaBuscaProd extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadProd.getInstance().setVisible(true);
 				limparCampos();
-				scrollPane.setVisible(false);;
+				scrollPane.setVisible(false);
 				dispose();
 			}
 		});
