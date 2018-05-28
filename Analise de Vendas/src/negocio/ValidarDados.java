@@ -18,7 +18,7 @@ import excecoes.CPFNaoEncontradoException;
 import excecoes.CampoVazioException;
 import excecoes.EmailInvalidoException;
 import excecoes.SenhaInvalidaException;
-import telas.TelasAssistentes;
+import telas.Popup;
 
 public class ValidarDados {
 	private static final String GERENTE = "Gerente";
@@ -32,7 +32,7 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			TelasAssistentes.campoVazio(cve);
+			Popup.campoVazio(cve);
 			return false;
 		}
 		return true;
@@ -45,7 +45,7 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			TelasAssistentes.campoVazio(cve);
+			Popup.campoVazio(cve);
 			return false;
 		}
 		return true;
@@ -58,7 +58,7 @@ public class ValidarDados {
 				throw cve;
 			}
 		} catch (CampoVazioException cve) {
-			TelasAssistentes.campoVazio(cve);
+			Popup.campoVazio(cve);
 			return false;
 		}
 		return true;
@@ -72,10 +72,10 @@ public class ValidarDados {
 				throw sie;
 			}
 		}catch(SenhaInvalidaException sie){
-			TelasAssistentes.senhaInvalida(sie);
+			Popup.senhaInvalida(sie);
 			return false;
 		}catch(CPFNaoEncontradoException cpfnee){
-			TelasAssistentes.cpfNaoEncontrado(cpfnee);
+			Popup.cpfNaoEncontrado(cpfnee);
 			return false;
 		}
 		return true;
@@ -97,7 +97,7 @@ public class ValidarDados {
 			}
 			
 		}catch(EmailInvalidoException eie ){
-			TelasAssistentes.emailInvalido(eie);
+			Popup.emailInvalido(eie);
 		}
 		return true;
 	}

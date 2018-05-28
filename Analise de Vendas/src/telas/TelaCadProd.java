@@ -114,7 +114,7 @@ public class TelaCadProd extends JFrame {
 		lblValor.setBounds(108, 211, 86, 21);
 		panel.add(lblValor);
 
-		JButton btnEnviar = new JButton("Enviar");
+		JButton btnEnviar = new JButton("Cadastrar");
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (ValidarDados.validarCampoVazio(textFieldNome.getText(), textFieldDescricao.getText(),
@@ -122,12 +122,12 @@ public class TelaCadProd extends JFrame {
 					try{
 						Produto produto = new Produto(textFieldNome.getText(), textFieldDescricao.getText(),
 						Integer.parseInt(textFieldQuantidade.getText()),
-						Double.parseDouble(textFieldValor.getText()), "", "");
+						Double.parseDouble(textFieldValor.getText()), "none", "none");
 						Fachada.getInstance().cadastrar(produto);
 						JOptionPane.showMessageDialog(null, Mensagem.CADPRODSUC);
 						limparCampos();
 					}catch(NumberFormatException nfe){
-						TelasAssistentes.numberFormat();
+						Popup.numberFormat();
 					} 
 				}
 			}
