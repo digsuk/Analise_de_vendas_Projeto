@@ -36,16 +36,23 @@ public class TelaEditProd extends JFrame {
 
 	private JPanel contentPane;
 	private static TelaEditProd instance;
-	public static Produto produto;
+	//public static Produto produto;
 	private JTextField textFieldNome;
 	private JTextField textFieldDescricao;
 	private JTextField textFieldQuantidade;
 	private JTextField textFieldValor;
 	
-	public static TelaEditProd getInstance(Produto produto){
+	public static TelaEditProd getInstance(){
 		if(instance == null)
-			instance = new TelaEditProd(produto);
+			instance = new TelaEditProd();
 		return instance;
+	}
+	
+	public void passProduto(Produto produto){
+		textFieldNome.setText(produto.getNome());
+		textFieldDescricao.setText(produto.getDescricao());
+		textFieldQuantidade.setText(String.valueOf(produto.getQuantidade()));
+		textFieldValor.setText(String.valueOf(produto.getValor()));
 	}
 	
 	/**
@@ -55,7 +62,7 @@ public class TelaEditProd extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEditProd frame = new TelaEditProd(produto);
+					TelaEditProd frame = new TelaEditProd();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +74,7 @@ public class TelaEditProd extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEditProd(Produto produto) {
+	public TelaEditProd() {
 		setTitle("An\u00E1lise de Vendas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -154,12 +161,12 @@ public class TelaEditProd extends JFrame {
 		textFieldValor.setBounds(204, 211, 86, 20);
 		panel.add(textFieldValor);
 		
-		TelaEditProd.produto = produto;
+	/*	TelaEditProd.produto = produto;
 		textFieldNome.setText(produto.getNome());
 		textFieldDescricao.setText(produto.getDescricao());
 		textFieldQuantidade.setText(String.valueOf(produto.getQuantidade()));
 		textFieldValor.setText(String.valueOf(produto.getValor()));
-		
+	*/	
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

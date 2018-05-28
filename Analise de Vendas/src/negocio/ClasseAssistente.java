@@ -94,7 +94,7 @@ public class ClasseAssistente {
         }
 	}
 	
-	public static void montarTabelaProduto(ResultSet rs, ModeloTabelaProduto modelo, JTable table){
+	public static void montarTabelaProduto(ResultSet rs, ModeloTabelaProduto modelo){
 		List produtos = new ArrayList();
 		try{	
 			while(rs.next()){
@@ -112,12 +112,13 @@ public class ClasseAssistente {
 		}
 	}
 
-	public static void montarTabelaProduto(Produto produto, JTable table){		
+	public static void montarTabelaProduto(Produto produto, ModeloTabelaProduto modelo, JTable table){		
 		if(produto != null){
+			modelo.addProduto(produto);/*
 			table.setValueAt(produto.getNome(), 0, 0);
 			table.setValueAt(produto.getDescricao(), 0, 1);
 			table.setValueAt(produto.getQuantidade(), 0, 2);
-			table.setValueAt(produto.getValor(), 0, 3);
+			table.setValueAt(produto.getValor(), 0, 3);*/
 		}
 	}
 	

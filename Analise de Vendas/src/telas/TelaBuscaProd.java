@@ -139,20 +139,16 @@ public class TelaBuscaProd extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				while(modelo.getRowCount()>0)
+					modelo.removeProdutoAt(0);
 				if (textFieldNome.getText().equals("")) {
-					if(table.getRowCount() > 0)
-						for(int i = 0; i < table.getRowCount(); i++)
-							modelo.removeProdutoAt(i);
 					ResultSet rs;
 					rs = Fachada.getInstance().listarProd();
-					ClasseAssistente.montarTabelaProduto(rs, modelo, table);
+					ClasseAssistente.montarTabelaProduto(rs, modelo);
 				} else{
-					if(table.getRowCount() > 0)
-						for(int i = 0; i < table.getRowCount(); i++)
-							modelo.removeProdutoAt(i);
 					Produto produto;
 					produto = Fachada.getInstance().procurarProd(textFieldNome.getText());
-					ClasseAssistente.montarTabelaProduto(produto, table);
+					ClasseAssistente.montarTabelaProduto(produto, modelo, table);
 				}
 				scrollPane.setVisible(true);
 				btnEditar.setVisible(true);
@@ -208,7 +204,8 @@ public class TelaBuscaProd extends JFrame {
 				Produto produto;
 				int[] linhas = table.getSelectedRows();
 				if(linhas.length == 1){
-					TelaEditProd.getInstance(modelo.getProdutoAt(linhas[0])).setVisible(true);
+					TelaEditProd.getInstance().passProduto(modelo.getProdutoAt(linhas[0]));
+					TelaEditProd.getInstance().setVisible(true);
 					TelaBuscaProd.getInstance().setVisible(false);
 				}else{
 					Popup.select1Row();
