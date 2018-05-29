@@ -98,6 +98,7 @@ public class ValidarDados {
 			
 		}catch(EmailInvalidoException eie ){
 			Popup.emailInvalido(eie);
+			return false;
 		}
 		return true;
 	}

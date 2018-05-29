@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import excecoes.CampoVazioException;
 import negocio.ClasseAssistente;
 import negocio.Mensagem;
 import negocio.ValidarDados;
@@ -107,11 +108,21 @@ public class TelaLogin extends JFrame {
 		btnEsqueceuASenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String email, senha;
-				email = JOptionPane.showInputDialog(Mensagem.INFOEMAIL);
-				if(ValidarDados.validarEmail(email)){
-					senha = ClasseAssistente.gerarSenha();
-					ClasseAssistente.enviarEmail(email, senha);
-				}
+					do{
+						email = JOptionPane.showInputDialog(Mensagem.INFOEMAIL);
+						if(email==null)
+							break;
+						else if(!email.equals("")){
+							if(ValidarDados.validarEmail(email)){
+								senha = ClasseAssistente.gerarSenha();
+								ClasseAssistente.enviarEmail(email, senha);
+								break;
+							}
+							email = "";
+							continue;
+						}
+						Popup.campoVazio(new CampoVazioException());
+					}while(email.equals(""));						
 			}
 		});
 		btnEsqueceuASenha.setBorderPainted(false);

@@ -78,43 +78,22 @@ public class TelaEditProd extends JFrame {
 		setTitle("An\u00E1lise de Vendas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
+		setBounds(100, 100, 600, 570);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(SystemColor.window);
-		panel_1.setBounds(27, 60, 160, 23);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnInformaesDeAjuda = new JButton(" Informa\u00E7\u00F5es de ajuda");
-		btnInformaesDeAjuda.setBounds(0, 0, 123, 23);
-		panel_1.add(btnInformaesDeAjuda);
-		btnInformaesDeAjuda.setForeground(Color.BLACK);
-		btnInformaesDeAjuda.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInformaesDeAjuda.setBorderPainted(false);
-		btnInformaesDeAjuda.setBorder(null);
-		btnInformaesDeAjuda.setBackground(Color.WHITE);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(130, 0, 25, 23);
-		panel_1.add(lblNewLabel);
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setIcon(new ImageIcon(TelaBuscaProd.class.getResource("/imagem/ajuda.png")));
 		JLabel lblEdicaoDeProduto = new JLabel("Edi\u00E7\u00E3o de produto");
 		lblEdicaoDeProduto.setForeground(SystemColor.window);
 		lblEdicaoDeProduto.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblEdicaoDeProduto.setBounds(26, 105, 173, 14);
+		lblEdicaoDeProduto.setBounds(26, 70, 173, 25);
 		contentPane.add(lblEdicaoDeProduto);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 145, 594, 437);
+		panel.setBounds(0, 105, 594, 437);
 		contentPane.add(panel);
 		
 		JLabel label = new JLabel("Nome:");
@@ -175,5 +154,25 @@ public class TelaEditProd extends JFrame {
 		});
 		btnCancelar.setBounds(108, 254, 89, 23);
 		panel.add(btnCancelar);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(26, 30, 152, 23);
+		contentPane.add(panel_1);
+		
+		JButton button = new JButton(" Informa\u00E7\u00F5es de ajuda");
+		button.setBounds(0, 0, 152, 23);
+		panel_1.add(button);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setIcon(new ImageIcon(TelaEditProd.class.getResource("/imagem/question.png")));
+		button.setForeground(Color.BLACK);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
 	}
 }

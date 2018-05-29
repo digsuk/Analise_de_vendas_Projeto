@@ -48,6 +48,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class TelaBuscaProd extends JFrame {
 
@@ -92,37 +93,16 @@ public class TelaBuscaProd extends JFrame {
 		setTitle("An\u00E1lise de Vendas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
+		setBounds(100, 50, 600, 650);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(SystemColor.window);
-		panel_1.setBounds(27, 60, 160, 23);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnInformaesDeAjuda = new JButton(" Informa\u00E7\u00F5es de ajuda");
-		btnInformaesDeAjuda.setBounds(0, 0, 123, 23);
-		panel_1.add(btnInformaesDeAjuda);
-		btnInformaesDeAjuda.setForeground(Color.BLACK);
-		btnInformaesDeAjuda.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInformaesDeAjuda.setBorderPainted(false);
-		btnInformaesDeAjuda.setBorder(null);
-		btnInformaesDeAjuda.setBackground(Color.WHITE);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(130, 0, 25, 23);
-		panel_1.add(lblNewLabel);
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setIcon(new ImageIcon(TelaBuscaProd.class.getResource("/imagem/ajuda.png")));
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 135, 594, 437);
+		panel.setBounds(0, 135, 594, 487);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -133,7 +113,7 @@ public class TelaBuscaProd extends JFrame {
 		
 		textFieldNome = new JTextField();
 		textFieldNome.setColumns(10);
-		textFieldNome.setBounds(150, 31, 140, 20);
+		textFieldNome.setBounds(150, 31, 203, 20);
 		panel.add(textFieldNome);
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -155,7 +135,7 @@ public class TelaBuscaProd extends JFrame {
 				btnRemover.setVisible(true);
 			}
 		});
-		btnBuscar.setBounds(349, 28, 89, 23);
+		btnBuscar.setBounds(383, 31, 89, 23);
 		panel.add(btnBuscar);
 		
 		modelo = new ModeloTabelaProduto();
@@ -166,7 +146,7 @@ public class TelaBuscaProd extends JFrame {
 		table.setFillsViewportHeight(true);
 
 		scrollPane=new JScrollPane(table);
-		scrollPane.setBounds(20, 118, 449, 100);
+		scrollPane.setBounds(20, 118, 452, 157);
 		panel.add(scrollPane);
 		scrollPane.setVisible(false);
 		
@@ -214,12 +194,34 @@ public class TelaBuscaProd extends JFrame {
 		});
 		btnEditar.setBounds(484, 166, 89, 23);
 		panel.add(btnEditar);
+		
+		JLabel lblDistribuir = new JLabel("Distribuir:");
+		lblDistribuir.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDistribuir.setBounds(20, 305, 173, 14);
+		panel.add(lblDistribuir);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(10, 322, 574, 14);
+		panel.add(separator_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(101, 349, 366, 21);
+		panel.add(comboBox);
+		
+		JLabel lblVendedor = new JLabel("Vendedor:");
+		lblVendedor.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblVendedor.setBounds(20, 347, 86, 21);
+		panel.add(lblVendedor);
+		
+		JButton btnDistribuir = new JButton("Distribuir");
+		btnDistribuir.setBounds(479, 348, 89, 23);
+		panel.add(btnDistribuir);
 		btnEditar.setVisible(false);
 		
-		JLabel lblBuscaDeProduto = new JLabel("Busca de produto");
+		JLabel lblBuscaDeProduto = new JLabel("Gerenciamento de produto");
 		lblBuscaDeProduto.setForeground(SystemColor.window);
 		lblBuscaDeProduto.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblBuscaDeProduto.setBounds(26, 105, 173, 14);
+		lblBuscaDeProduto.setBounds(26, 99, 234, 25);
 		contentPane.add(lblBuscaDeProduto);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -240,11 +242,8 @@ public class TelaBuscaProd extends JFrame {
 		});
 		menu.add(menuItem);
 		
-		JMenuItem menuItem_1 = new JMenuItem("Buscar");
-		menu.add(menuItem_1);
-		
-		JMenuItem menuItem_2 = new JMenuItem("Distribuir");
-		menu.add(menuItem_2);
+		JMenuItem mntmGerenciar = new JMenuItem("Gerenciar");
+		menu.add(mntmGerenciar);
 		
 		JMenu menu_1 = new JMenu("Vendedor");
 		menuBar.add(menu_1);
@@ -252,13 +251,33 @@ public class TelaBuscaProd extends JFrame {
 		JMenuItem menuItem_3 = new JMenuItem("Cadastrar");
 		menu_1.add(menuItem_3);
 		
-		JMenuItem menuItem_4 = new JMenuItem("Buscar");
-		menu_1.add(menuItem_4);
+		JMenuItem mntmGerenciar_1 = new JMenuItem("Gerenciar");
+		menu_1.add(mntmGerenciar_1);
 		
 		JMenu menu_2 = new JMenu("Vendas");
 		menuBar.add(menu_2);
 		
 		JMenuItem menuItem_5 = new JMenuItem("Relat\u00F3rio");
 		menu_2.add(menuItem_5);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(26, 60, 152, 23);
+		contentPane.add(panel_1);
+		
+		JButton button = new JButton(" Informa\u00E7\u00F5es de ajuda");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setIcon(new ImageIcon(TelaBuscaProd.class.getResource("/imagem/question.png")));
+		button.setForeground(Color.BLACK);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
+		button.setBounds(0, 0, 152, 23);
+		panel_1.add(button);
 	}
 }
