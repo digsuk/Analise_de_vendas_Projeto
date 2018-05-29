@@ -26,21 +26,26 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import negocio.Produto;
+import entidades.Produto;
+import negocio.Fachada;
+import negocio.Mensagem;
+import negocio.ValidarDados;
+
 import javax.swing.JTextField;
 
 public class TelaEditProd extends JFrame {
 
 	private JPanel contentPane;
 	private static TelaEditProd instance;
-	//public static Produto produto;
 	private JTextField textFieldNome;
 	private JTextField textFieldDescricao;
 	private JTextField textFieldQuantidade;
 	private JTextField textFieldValor;
+	private Produto produtoEditado;
 	
 	public static TelaEditProd getInstance(){
 		if(instance == null)
@@ -48,7 +53,15 @@ public class TelaEditProd extends JFrame {
 		return instance;
 	}
 	
+	public void limparCampos(){
+		textFieldNome.setText("");
+		textFieldDescricao.setText("");
+		textFieldQuantidade.setText("");
+		textFieldValor.setText("");
+	}
+	
 	public void passProduto(Produto produto){
+		this.produtoEditado = produto;
 		textFieldNome.setText(produto.getNome());
 		textFieldDescricao.setText(produto.getDescricao());
 		textFieldQuantidade.setText(String.valueOf(produto.getQuantidade()));
@@ -117,6 +130,24 @@ public class TelaEditProd extends JFrame {
 		panel.add(label_3);
 		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(ValidarDados.validarCampoVazio(textFieldNome.getText(), textFieldDescricao.getText(),
+						textFieldQuantidade.getText(), textFieldValor.getText())){
+					try{
+						Produto produto = new Produto(textFieldNome.getText(), 
+													  textFieldDescricao.getText(),
+													  Integer.parseInt(textFieldQuantidade.getText()),
+													  Double.parseDouble(textFieldValor.getText()), 
+													  produtoEditado.getChave());
+						Fachada.getInstance().atualizar(produto);
+						JOptionPane.showMessageDialog(null, Mensagem.CADPRODSUC);
+					}catch(NumberFormatException nfe){
+						Popup.numberFormat();
+					} 
+				}
+			}
+		});
 		btnEditar.setBounds(326, 254, 89, 23);
 		panel.add(btnEditar);
 		
@@ -140,15 +171,11 @@ public class TelaEditProd extends JFrame {
 		textFieldValor.setBounds(204, 211, 86, 20);
 		panel.add(textFieldValor);
 		
-	/*	TelaEditProd.produto = produto;
-		textFieldNome.setText(produto.getNome());
-		textFieldDescricao.setText(produto.getDescricao());
-		textFieldQuantidade.setText(String.valueOf(produto.getQuantidade()));
-		textFieldValor.setText(String.valueOf(produto.getValor()));
-	*/	
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limparCampos();
+				TelaGerenciaProd.getInstance().setVisible(true);
 				dispose();
 			}
 		});

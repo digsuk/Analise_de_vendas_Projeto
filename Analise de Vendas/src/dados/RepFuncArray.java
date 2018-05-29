@@ -10,9 +10,9 @@
  *-------------------------------------------*/
 package dados;
 
+import entidades.Funcionario;
 import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorioFuncionario;
-import negocio.Funcionario;
 
 public class RepFuncArray implements IRepositorioFuncionario{
 	public static final int TAMANHO = 1000000;

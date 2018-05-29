@@ -14,6 +14,7 @@ package negocio;
 
 import javax.swing.JOptionPane;
 
+import entidades.Funcionario;
 import excecoes.CPFNaoEncontradoException;
 import excecoes.CampoVazioException;
 import excecoes.EmailInvalidoException;

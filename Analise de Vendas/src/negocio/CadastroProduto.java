@@ -12,6 +12,7 @@
 package negocio;
 import java.sql.ResultSet;
 
+import entidades.Produto;
 import interfaces.IRepositorioProduto;
 public class CadastroProduto {
 	private IRepositorioProduto repositorio;

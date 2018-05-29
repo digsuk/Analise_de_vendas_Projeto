@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import entidades.Produto;
+
 public class ModeloTabelaProduto extends AbstractTableModel {
 	private ArrayList<Produto> dataList = new ArrayList();
 	private String[] columns={"Nome", "Descri\u00E7\u00E3o", "Quantidade", "Valor"};

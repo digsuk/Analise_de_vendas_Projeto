@@ -10,7 +10,7 @@
  *       |        |
  *-------------------------------------------*/
 
-package negocio;
+package entidades;
 
 public class Vendedor extends Funcionario{
 

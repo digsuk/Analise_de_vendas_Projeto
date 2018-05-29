@@ -11,8 +11,8 @@
  *-------------------------------------------*/
 package interfaces;
 
+import entidades.Funcionario;
 import excecoes.CPFNaoEncontradoException;
-import negocio.Funcionario;
 
 public interface IRepositorioFuncionario {
 	public void inserir(Funcionario produto);

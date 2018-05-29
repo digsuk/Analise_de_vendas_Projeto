@@ -13,6 +13,8 @@ package negocio;
 import java.sql.ResultSet;
 
 import dados.*;
+import entidades.Funcionario;
+import entidades.Produto;
 import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorioFuncionario;
 import interfaces.IRepositorioProduto;

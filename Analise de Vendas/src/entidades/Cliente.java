@@ -1,25 +1,22 @@
 /*---------------------------------------------
  * Autor: Jonathan Moura
- * Data:29/04/2018
+ * Data:29/05/2018
  *---------------------------------------------
- * Descrição: Classe de vendas
- * 
+ * Descrição: Classe com dados do cliente.
  *---------------------------------------------
  * Histórico de modificação
  * Data    Autor    Descrição
  *       |        |
  *-------------------------------------------*/
-package negocio;
-import java.util.Date;
-public class Vendas extends Produto{
-	
+package entidades;
+
+public class Cliente {
 	private String cpf, cnpj;
-	private Date data; 
-	public Vendas(String nome, String descricao, int quantidade, double valor, String porcentagem, String chave, String cpf, String cnpj, Date data) {
-		super(nome, descricao, quantidade, valor, porcentagem, chave);
+	
+	public Cliente(String cpf, String cnpj) {
+		super();
 		this.cpf = cpf;
 		this.cnpj = cnpj;
-		this.data = data;
 	}
 	public String getCpf() {
 		return cpf;
@@ -33,11 +30,4 @@ public class Vendas extends Produto{
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
-	
 }

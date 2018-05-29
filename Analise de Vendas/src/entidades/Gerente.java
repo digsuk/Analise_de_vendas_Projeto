@@ -9,7 +9,7 @@
  * Data    Autor    Descrição
  *       |        |
  *-------------------------------------------*/
-package negocio;
+package entidades;
 
 public class Gerente extends Funcionario{
 

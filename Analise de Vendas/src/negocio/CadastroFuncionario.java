@@ -12,6 +12,7 @@
 
 package negocio;
 
+import entidades.Funcionario;
 import excecoes.CPFNaoEncontradoException;
 import interfaces.IRepositorioFuncionario;
 

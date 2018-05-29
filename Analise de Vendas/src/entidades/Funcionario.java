@@ -9,7 +9,7 @@
  * Data    Autor    Descrição
  *       |        |
  *-------------------------------------------*/
-package negocio;
+package entidades;
 
 public class Funcionario {
 	private String nome, cpf, email, senha, funcao, chave;

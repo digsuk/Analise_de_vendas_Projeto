@@ -19,6 +19,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import entidades.Produto;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -28,7 +31,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import negocio.Fachada;
 import negocio.Mensagem;
-import negocio.Produto;
 import negocio.ValidarDados;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -122,7 +124,7 @@ public class TelaCadProd extends JFrame {
 					try{
 						Produto produto = new Produto(textFieldNome.getText(), textFieldDescricao.getText(),
 						Integer.parseInt(textFieldQuantidade.getText()),
-						Double.parseDouble(textFieldValor.getText()), "none", "none");
+						Double.parseDouble(textFieldValor.getText()), "none");
 						Fachada.getInstance().cadastrar(produto);
 						JOptionPane.showMessageDialog(null, Mensagem.CADPRODSUC);
 						limparCampos();
@@ -175,7 +177,7 @@ public class TelaCadProd extends JFrame {
 		JMenuItem mntmEditar = new JMenuItem("Gerenciar");
 		mntmEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBuscaProd.getInstance().setVisible(true);
+				TelaGerenciaProd.getInstance().setVisible(true);
 				limparCampos();
 				dispose();
 			}

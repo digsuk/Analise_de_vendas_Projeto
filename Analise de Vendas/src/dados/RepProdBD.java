@@ -17,15 +17,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import entidades.Produto;
 import interfaces.IRepositorioProduto;
-import negocio.Produto;
 
 public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 	private static final String INSERIR   = "INSERT INTO produto ";
 	private static final String PROCURAR  = "SELECT * FROM produto ";
 	private static final String REMOVER   = "DELETE FROM produto WHERE nome = ";
-	private static final String ATUALIZAR = "UPDATE produto SET nome = ?, descrição = ?, quantidade = ?, valor = ?, porcentagem = ?, chave = ? WHERE nome = ?";
-	private static final String CAMPOS    = "(id, nome, descrição, quantidade, valor, porcentagem, chave) ";	
+	private static final String ATUALIZAR = "UPDATE produto SET nome = ?, descrição = ?, quantidade = ?, valor = ?, chave = ? WHERE nome = ?";
+	private static final String CAMPOS    = "(id, nome, descrição, quantidade, valor, chave) ";	
 	
 	public RepProdBD(){
 		super();
@@ -40,7 +40,6 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 				 							   + produto.getDescricao()   + "\'," 
 				 							   + produto.getQuantidade()  + "," 
 				 							   + produto.getValor() 	  + ",\'" 
-				 							   + produto.getPorcentagem() + "\',\'" 
 				 							   + produto.getChave() 	  + "\')";
 		String comando = INSERIR + CAMPOS + valores;
 		//Grava no banco de dados
@@ -68,7 +67,6 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 											  rs.getString("descrição"),
 											  rs.getInt("quantidade"),
 											  rs.getDouble("valor"),
-											  rs.getString("porcentagem"),
 											  rs.getString("chave"));
 				System.out.println("Sucesso!");
 				return produto;
@@ -122,7 +120,6 @@ public class RepProdBD extends RepositorioBD implements IRepositorioProduto{
 			pstm.setString(1, produto.getDescricao());
 			pstm.setInt(3, produto.getQuantidade());
 			pstm.setDouble(3, produto.getValor());
-			pstm.setString(5, produto.getPorcentagem());
 			pstm.setString(6, produto.getChave());
 			int res = pstm.executeUpdate(ATUALIZAR);
 			if (res > 0) {

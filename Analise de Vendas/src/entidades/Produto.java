@@ -9,10 +9,10 @@
  * Data    Autor    Descrição
  *       |        |
  *-------------------------------------------*/
-package negocio;
+package entidades;
 
 public class Produto {
-	private String nome, descricao, porcentagem, chave;
+	private String nome, descricao, chave;
 	private int quantidade;
 	private double valor;
 	
@@ -20,12 +20,11 @@ public class Produto {
 		
 	}
 	
-	public Produto(String nome, String descricao, int quantidade, double valor, String porcentagem, String chave) {
+	public Produto(String nome, String descricao, int quantidade, double valor, String chave) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.quantidade = quantidade;
 		this.valor = valor;
-		this.porcentagem = porcentagem;
 		this.chave = chave;
 	}
 	
@@ -59,14 +58,6 @@ public class Produto {
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	}
-
-	public String getPorcentagem() {
-		return porcentagem;
-	}
-
-	public void setPorcentagem(String porcentagem) {
-		this.porcentagem = porcentagem;
 	}
 
 	public String getChave() {

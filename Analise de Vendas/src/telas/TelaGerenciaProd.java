@@ -33,10 +33,10 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import entidades.Produto;
 import negocio.ClasseAssistente;
 import negocio.Fachada;
 import negocio.ModeloTabelaProduto;
-import negocio.Produto;
 import negocio.ValidarDados;
 
 import javax.swing.ListSelectionModel;
@@ -50,20 +50,20 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class TelaBuscaProd extends JFrame {
+public class TelaGerenciaProd extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTable table;
 	private ModeloTabelaProduto modelo; 
 	JScrollPane scrollPane;
-	public static TelaBuscaProd instance;
+	public static TelaGerenciaProd instance;
 	JButton btnRemover;
 	JButton btnEditar; 
 	
-	public static TelaBuscaProd getInstance() {
+	public static TelaGerenciaProd getInstance() {
 		if (instance == null)
-			instance = new TelaBuscaProd();
+			instance = new TelaGerenciaProd();
 		return instance;
 	}
 	
@@ -77,7 +77,7 @@ public class TelaBuscaProd extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaBuscaProd frame = new TelaBuscaProd();
+					TelaGerenciaProd frame = new TelaGerenciaProd();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -89,7 +89,7 @@ public class TelaBuscaProd extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaBuscaProd() {
+	public TelaGerenciaProd() {
 		setTitle("An\u00E1lise de Vendas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -186,7 +186,7 @@ public class TelaBuscaProd extends JFrame {
 				if(linhas.length == 1){
 					TelaEditProd.getInstance().passProduto(modelo.getProdutoAt(linhas[0]));
 					TelaEditProd.getInstance().setVisible(true);
-					TelaBuscaProd.getInstance().setVisible(false);
+					dispose();
 				}else{
 					Popup.select1Row();
 				}
@@ -271,7 +271,7 @@ public class TelaBuscaProd extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button.setIcon(new ImageIcon(TelaBuscaProd.class.getResource("/imagem/question.png")));
+		button.setIcon(new ImageIcon(TelaGerenciaProd.class.getResource("/imagem/question.png")));
 		button.setForeground(Color.BLACK);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button.setBorderPainted(false);

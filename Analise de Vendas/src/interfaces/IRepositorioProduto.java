@@ -13,7 +13,7 @@ package interfaces;
 
 import java.sql.ResultSet;
 
-import negocio.Produto;
+import entidades.Produto;
 
 public interface IRepositorioProduto {
 	public void inserir(Produto produto);

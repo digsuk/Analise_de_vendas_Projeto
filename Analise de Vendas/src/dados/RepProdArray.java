@@ -12,8 +12,8 @@
 package dados;
 import java.sql.ResultSet;
 
+import entidades.Produto;
 import interfaces.IRepositorioProduto;
-import negocio.Produto;
 public class RepProdArray implements IRepositorioProduto{
 	public static final int TAMANHO = 1000000;
 	private int indice;

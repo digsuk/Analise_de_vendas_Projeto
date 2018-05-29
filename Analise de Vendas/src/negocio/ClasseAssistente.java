@@ -28,6 +28,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JTable;
 
+import entidades.Gerente;
+import entidades.Produto;
+
 public class ClasseAssistente {
 	
 	//Gera uma senha de 10 caracteres, através da conversão de 
